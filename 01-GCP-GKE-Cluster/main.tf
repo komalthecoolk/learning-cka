@@ -32,6 +32,7 @@ resource "google_container_cluster" "primary" {
     metadata = var.node_metadata
 
     preemptible = var.spot
+    spot = true
 
     reservation_affinity {
       consume_reservation_type = var.reservation_affinity
