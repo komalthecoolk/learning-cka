@@ -32,7 +32,7 @@ resource "google_container_cluster" "primary" {
     metadata = var.node_metadata
 
     preemptible = var.spot
-    spot = true
+    spot        = true
 
     reservation_affinity {
       consume_reservation_type = var.reservation_affinity
@@ -44,7 +44,7 @@ resource "google_container_cluster" "primary" {
 
     shielded_instance_config {
       enable_integrity_monitoring = var.shielded_integrity_monitoring
-      enable_secure_boot         = var.shielded_secure_boot
+      enable_secure_boot          = var.shielded_secure_boot
     }
   }
 
