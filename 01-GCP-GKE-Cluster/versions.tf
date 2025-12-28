@@ -6,6 +6,11 @@ terraform {
       version = "~> 5.0"
     }
   }
+
+  backend "gcs" {
+    bucket = "kk-terraform-state-bucket"
+    prefix = "learning-cka/01-GCP-GKE-Cluster"
+  }
 }
 
 provider "google" {

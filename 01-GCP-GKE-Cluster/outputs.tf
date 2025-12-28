@@ -15,7 +15,7 @@ output "endpoint" {
 
 output "master_version" {
   description = "Current master version"
-  value       = google_container_cluster.primary.current_master_version
+  value       = google_container_cluster.primary.master_version
 }
 
 output "kubeconfig_command" {

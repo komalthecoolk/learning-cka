@@ -1,3 +1,6 @@
+data "google_project" "project" {
+}
+
 resource "google_container_cluster" "primary" {
   name               = var.cluster_name
   location           = var.region
@@ -12,11 +15,13 @@ resource "google_container_cluster" "primary" {
   release_channel {
     channel = var.release_channel
   }
+  min_master_version = "1.34.1-gke.3355002"
+  node_version = "1.34.1-gke.3355002"
 
   # Network configuration
   network    = var.network
   subnetwork = var.subnetwork
-
+  datapath_provider = "ADVANCED_DATAPATH"
   ip_allocation_policy {
     cluster_secondary_range_name  = ""
     services_secondary_range_name = ""
@@ -31,7 +36,7 @@ resource "google_container_cluster" "primary" {
 
     metadata = var.node_metadata
 
-    preemptible = var.spot
+    # preemptible = var.spot
     spot        = true
 
     reservation_affinity {
@@ -54,6 +59,10 @@ resource "google_container_cluster" "primary" {
   # Logging and monitoring
   logging_service    = var.logging_service
   monitoring_service = var.monitoring_service
+
+  workload_identity_config {
+  workload_pool = "${data.google_project.project.project_id}.svc.id.goog"
+  }
 
   # Addons
   addons_config {

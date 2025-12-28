@@ -24,7 +24,7 @@ variable "num_nodes" {
 variable "node_locations" {
   description = "List of zones where cluster nodes should be created"
   type        = list(string)
-  default     = ["us-central1-a", "us-central1-b", "us-central1-c"]
+  default     = ["us-central1-a"]
 }
 
 variable "release_channel" {
@@ -92,13 +92,13 @@ variable "enable_intra_node_visibility" {
 variable "network" {
   description = "The name or self_link of the Google Compute Engine network"
   type        = string
-  default     = "projects/mylearning-354010/global/networks/default"
+  default     = "projects/mylearning-354010/global/networks/some-default-vpc"
 }
 
 variable "subnetwork" {
   description = "The name or self_link of the Google Compute Engine subnetwork"
   type        = string
-  default     = "projects/mylearning-354010/regions/us-central1/subnetworks/default"
+  default     = "projects/mylearning-354010/regions/us-central1/subnetworks/some-default-vpc"
 }
 
 variable "logging_service" {
